@@ -1,6 +1,9 @@
+/* Import Nunito font */
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap');
+
 /* Main Container */
 .app-container {
-  font-family: sans-serif;
+  font-family: 'Nunito', sans-serif;
   padding: 20px;
   max-width: 1200px;
   margin: 0 auto;
@@ -35,23 +38,23 @@
 }
 
 .role-button.controller {
-  background: #4ade80;
+  background: #104d0c;
 }
 
 .role-button.placer {
-  background: #60a5fa;
+  background: #36289f;
 }
 
 /* Main Grid Layout */
 .main-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 2fr;
   gap: 20px;
 }
 
 /* Control Panels */
 .control-panel {
-  background: #f9fafb;
+  background: #c2c3c4;
   padding: 20px;
   border-radius: 8px;
 }
@@ -107,7 +110,7 @@
 }
 
 .mold-button.selected {
-  color: white;
+  color: rgb(0, 0, 0);
   font-weight: bold;
 }
 
@@ -121,7 +124,7 @@
 .settings-info {
   margin-top: 20px;
   padding: 15px;
-  background: #fef3c7;
+  background: #fffdb8;
   border-radius: 6px;
 }
 
@@ -137,7 +140,7 @@
   width: 100%;
   font-size: 14px;
   cursor: pointer;
-  background: #ef4444;
+  background: #9e4b4b;
   border: none;
   border-radius: 8px;
   color: white;
@@ -149,7 +152,7 @@
   padding: 8px 16px;
   font-size: 12px;
   cursor: pointer;
-  background: #64748b;
+  background: #484d54;
   border: none;
   border-radius: 6px;
   color: white;
@@ -159,12 +162,13 @@
 /* Petri Dish Container */
 .petri-container {
   text-align: center;
+  margin-top: -30px
 }
 
 .petri-canvas {
-  border: 2px solid #333;
+  border: 3px solid #333;
   border-radius: 8px;
-  background: white;
+  background: rgb(221, 240, 240);
 }
 
 .petri-canvas.placer {
@@ -178,11 +182,11 @@
 .petri-info {
   margin-top: 10px;
   font-size: 12px;
-  color: #666;
+  color: #4e4d4d;
 }
 
 .mold-count {
   margin-top: 5px;
   font-size: 12px;
-  color: #666;
+  color: #4e4d4d;
 }

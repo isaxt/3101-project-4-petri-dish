@@ -82,24 +82,28 @@ export function App() {
     const ctx = canvas.getContext('2d');
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    // Draw petri dish background
-    ctx.fillStyle = '#f0f0f0';
-    ctx.beginPath();
-    ctx.arc(200, 200, 190, 0, Math.PI * 2);
-    ctx.fill();
-    ctx.strokeStyle = '#888';
-    ctx.lineWidth = 2;
-    ctx.stroke();
+    // Draw petri dish image as background
+    const petriImg = petriDishImageRef.current;
+    if (petriImg && petriImg.complete) {
+      ctx.drawImage(petriImg, 0, 0, canvas.width, canvas.height);
+    }
 
-    // Draw molds
+    // Draw molds using images
     molds.forEach(mold => {
-      const moldType = MOLD_TYPES[mold.type];
-      ctx.fillStyle = moldType.color;
-      ctx.globalAlpha = 0.7;
-      ctx.beginPath();
-      ctx.arc(mold.x, mold.y, mold.size, 0, Math.PI * 2);
-      ctx.fill();
-      ctx.globalAlpha = 1;
+      const moldImg = moldImagesRef.current[mold.type];
+      if (moldImg && moldImg.complete) {
+        ctx.globalAlpha = 0.8;
+        // Draw image centered on the click position
+        const imgSize = mold.size * 2; // diameter
+        ctx.drawImage(
+          moldImg,
+          mold.x - imgSize / 2,
+          mold.y - imgSize / 2,
+          imgSize,
+          imgSize
+        );
+        ctx.globalAlpha = 1;
+      }
     });
   }, [molds]);
 
@@ -183,11 +187,11 @@ export function App() {
 
   return (
     <div className="app-container">
-      <h1 className="app-title">🧫 mold culture simulator</h1>
+      <h1 className="app-title">⋆˙𓍊₊ ⊹˚mold culture simulator⋆˙𓍊₊ ⊹˚</h1>
       
       <div className="connection-info">
         <div><strong>your ID:</strong> {id}</div>
-        <div><strong>connected Users:</strong> {connected.join(', ')}</div>
+        <div><strong>connected users:</strong> {connected.join(', ')}</div>
       </div>
 
       {!role && (
@@ -263,12 +267,12 @@ export function App() {
                     className="range-input"
                   />
                   <div className="control-info">
-                    Effect: {(0.5 + (temperature / 100)).toFixed(2)}x
+                    effect: {(0.5 + (temperature / 100)).toFixed(2)}x
                   </div>
                 </div>
 
                 <div className="preview-box">
-                  <strong>Current Mold Size Preview:</strong>
+                  <strong>current mold size preview:</strong>
                   <div className="preview-size">
                     {((10 + (environment / 100) * 30) * (1 + (time / 100) * 2) * (0.5 + (temperature / 100))).toFixed(1)}px
                   </div>
@@ -278,7 +282,7 @@ export function App() {
 
             {role === 'placer' && (
               <div className="control-panel">
-                <h3>Mold Selection</h3>
+                <h3>mold selection</h3>
                 <div className="mold-grid">
                   {MOLD_TYPES.map((mold, index) => (
                     <button
@@ -303,12 +307,12 @@ export function App() {
                 </div>
 
                 <div className="settings-info">
-                  <strong>Current Settings:</strong>
+                  <strong>current settings:</strong>
                   <div className="settings-text">
-                    Environment: {environment}% | Time: {time}% | Temp: {temperature}%
+                    nnvironment: {environment}% | time: {time}% | temp: {temperature}%
                   </div>
                   <div className="settings-text">
-                    Mold size will be: {((10 + (environment / 100) * 30) * (1 + (time / 100) * 2) * (0.5 + (temperature / 100))).toFixed(1)}px
+                    mold size will be: {((10 + (environment / 100) * 30) * (1 + (time / 100) * 2) * (0.5 + (temperature / 100))).toFixed(1)}px
                   </div>
                 </div>
 
@@ -319,17 +323,17 @@ export function App() {
             )}
 
             <button onClick={() => setRole(null)} className="change-role-button">
-              Change Role
+              change role
             </button>
           </div>
 
           {/* Right Panel - Petri Dish */}
           <div className="petri-container">
-            <h3>Petri Dish</h3>
+            <h3>petri dish</h3>
             <canvas
               ref={canvasRef}
-              width={400}
-              height={400}
+              width={500}
+              height={500}
               onClick={handleCanvasClick}
               className={`petri-canvas ${role}`}
             />
@@ -337,7 +341,7 @@ export function App() {
               {role === 'placer' ? 'Click on the petri dish to place mold' : 'Adjust sliders to change mold properties'}
             </div>
             <div className="mold-count">
-              Total molds: {molds.length}
+              total molds: {molds.length}
             </div>
           </div>
         </div>
