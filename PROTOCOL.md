@@ -1,3 +1,5 @@
+// i need to work on this still 
+
 # Chat Protocol
 
 All messages are sent as JSON strings.

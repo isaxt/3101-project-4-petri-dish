@@ -1,8 +1,5 @@
-// i am gonna cry why is this so difficult :((((()))))
-
-// i need to separate the html and css and jsx
-
 import { useState, useEffect, useRef } from "react";
+import './style.css';
 
 const MOLD_TYPES = [
   { name: 'abstract mold', image: '/assets/abstract_mold.png' },
@@ -185,61 +182,43 @@ export function App() {
   };
 
   return (
-    <div style={{ fontFamily: 'sans-serif', padding: '20px', maxWidth: '1200px', margin: '0 auto' }}>
-      <h1 style={{ textAlign: 'center' }}>🧫 mold culture simulator</h1>
+    <div className="app-container">
+      <h1 className="app-title">🧫 mold culture simulator</h1>
       
-      <div style={{ marginBottom: '20px', padding: '10px', background: '#f5f5f5', borderRadius: '8px' }}>
-        <div><strong>Your ID:</strong> {id}</div>
-        <div><strong>Connected Users:</strong> {connected.join(', ')}</div>
+      <div className="connection-info">
+        <div><strong>your ID:</strong> {id}</div>
+        <div><strong>connected Users:</strong> {connected.join(', ')}</div>
       </div>
 
       {!role && (
-        <div style={{ textAlign: 'center', marginBottom: '30px' }}>
-          <h2>Choose Your Role:</h2>
+        <div className="role-selection">
+          <h2>pick your role:</h2>
           <button 
             onClick={() => setRole('controller')}
-            style={{
-              padding: '15px 30px',
-              margin: '10px',
-              fontSize: '16px',
-              cursor: 'pointer',
-              background: '#4ade80',
-              border: 'none',
-              borderRadius: '8px',
-              color: 'white'
-            }}
+            className="role-button controller"
           >
-            🎛️ environment controller
+            environment controller🎛️
           </button>
           <button 
             onClick={() => setRole('placer')}
-            style={{
-              padding: '15px 30px',
-              margin: '10px',
-              fontSize: '16px',
-              cursor: 'pointer',
-              background: '#60a5fa',
-              border: 'none',
-              borderRadius: '8px',
-              color: 'white'
-            }}
+            className="role-button placer"
           >
-            🧪 mold placer
+            mold placer🧫
           </button>
         </div>
       )}
 
       {role && (
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px' }}>
+        <div className="main-grid">
           {/* Left Panel - Controls */}
           <div>
             {role === 'controller' && (
-              <div style={{ background: '#f9fafb', padding: '20px', borderRadius: '8px' }}>
-                <h3>Environment Controls</h3>
+              <div className="control-panel">
+                <h3>environment controls</h3>
                 
-                <div style={{ marginBottom: '20px' }}>
-                  <label style={{ display: 'block', marginBottom: '5px' }}>
-                    <strong>Environment (Mold Size)</strong>: {environment}%
+                <div className="control-section">
+                  <label className="control-label">
+                    <strong>environment parameters (affects mold size)</strong>: {environment}%
                   </label>
                   <input 
                     type="range" 
@@ -247,16 +226,16 @@ export function App() {
                     max="100" 
                     value={environment}
                     onChange={handleEnvironmentChange}
-                    style={{ width: '100%' }}
+                    className="range-input"
                   />
-                  <div style={{ fontSize: '12px', color: '#666' }}>
-                    Base size: {(10 + (environment / 100) * 30).toFixed(0)}px
+                  <div className="control-info">
+                    base size: {(10 + (environment / 100) * 30).toFixed(0)}px
                   </div>
                 </div>
 
-                <div style={{ marginBottom: '20px' }}>
-                  <label style={{ display: 'block', marginBottom: '5px' }}>
-                    <strong>Time (Growth Factor)</strong>: {time}%
+                <div className="control-section">
+                  <label className="control-label">
+                    <strong>time (growth factor)</strong>: {time}%
                   </label>
                   <input 
                     type="range" 
@@ -264,16 +243,16 @@ export function App() {
                     max="100" 
                     value={time}
                     onChange={handleTimeChange}
-                    style={{ width: '100%' }}
+                    className="range-input"
                   />
-                  <div style={{ fontSize: '12px', color: '#666' }}>
-                    Growth: {(1 + (time / 100) * 2).toFixed(2)}x
+                  <div className="control-info">
+                    growth: {(1 + (time / 100) * 2).toFixed(2)}x
                   </div>
                 </div>
 
-                <div style={{ marginBottom: '20px' }}>
-                  <label style={{ display: 'block', marginBottom: '5px' }}>
-                    <strong>Temperature</strong>: {temperature}%
+                <div className="control-section">
+                  <label className="control-label">
+                    <strong>temperature</strong>: {temperature}%
                   </label>
                   <input 
                     type="range" 
@@ -281,16 +260,16 @@ export function App() {
                     max="100" 
                     value={temperature}
                     onChange={handleTemperatureChange}
-                    style={{ width: '100%' }}
+                    className="range-input"
                   />
-                  <div style={{ fontSize: '12px', color: '#666' }}>
+                  <div className="control-info">
                     Effect: {(0.5 + (temperature / 100)).toFixed(2)}x
                   </div>
                 </div>
 
-                <div style={{ padding: '15px', background: '#e0f2fe', borderRadius: '6px', marginTop: '20px' }}>
+                <div className="preview-box">
                   <strong>Current Mold Size Preview:</strong>
-                  <div style={{ fontSize: '24px', marginTop: '10px' }}>
+                  <div className="preview-size">
                     {((10 + (environment / 100) * 30) * (1 + (time / 100) * 2) * (0.5 + (temperature / 100))).toFixed(1)}px
                   </div>
                 </div>
@@ -298,104 +277,66 @@ export function App() {
             )}
 
             {role === 'placer' && (
-              <div style={{ background: '#f9fafb', padding: '20px', borderRadius: '8px' }}>
+              <div className="control-panel">
                 <h3>Mold Selection</h3>
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px' }}>
+                <div className="mold-grid">
                   {MOLD_TYPES.map((mold, index) => (
                     <button
                       key={index}
                       onClick={() => setSelectedMold(index)}
+                      className={`mold-button ${selectedMold === index ? 'selected' : ''}`}
                       style={{
-                        padding: '15px',
-                        fontSize: '14px',
-                        cursor: 'pointer',
                         background: selectedMold === index ? mold.color : 'white',
-                        border: `2px solid ${mold.color}`,
-                        borderRadius: '8px',
-                        color: selectedMold === index ? 'white' : '#333',
-                        fontWeight: selectedMold === index ? 'bold' : 'normal',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        gap: '8px'
+                        borderColor: mold.color,
+                        borderWidth: '2px',
+                        borderStyle: 'solid'
                       }}
                     >
                       <img 
                         src={mold.image} 
                         alt={mold.name}
-                        style={{ width: '24px', height: '24px', objectFit: 'contain' }}
+                        className="mold-icon"
                       />
                       {mold.name}
                     </button>
                   ))}
                 </div>
 
-                <div style={{ marginTop: '20px', padding: '15px', background: '#fef3c7', borderRadius: '6px' }}>
+                <div className="settings-info">
                   <strong>Current Settings:</strong>
-                  <div style={{ fontSize: '12px', marginTop: '5px' }}>
+                  <div className="settings-text">
                     Environment: {environment}% | Time: {time}% | Temp: {temperature}%
                   </div>
-                  <div style={{ fontSize: '12px' }}>
+                  <div className="settings-text">
                     Mold size will be: {((10 + (environment / 100) * 30) * (1 + (time / 100) * 2) * (0.5 + (temperature / 100))).toFixed(1)}px
                   </div>
                 </div>
 
-                <button
-                  onClick={clearDish}
-                  style={{
-                    marginTop: '20px',
-                    padding: '10px 20px',
-                    width: '100%',
-                    fontSize: '14px',
-                    cursor: 'pointer',
-                    background: '#ef4444',
-                    border: 'none',
-                    borderRadius: '8px',
-                    color: 'white'
-                  }}
-                >
-                  🧹 Clear Petri Dish
+                <button onClick={clearDish} className="clear-button">
+                  clear petri dish🧹
                 </button>
               </div>
             )}
 
-            <button
-              onClick={() => setRole(null)}
-              style={{
-                marginTop: '10px',
-                padding: '8px 16px',
-                fontSize: '12px',
-                cursor: 'pointer',
-                background: '#64748b',
-                border: 'none',
-                borderRadius: '6px',
-                color: 'white',
-                width: '100%'
-              }}
-            >
+            <button onClick={() => setRole(null)} className="change-role-button">
               Change Role
             </button>
           </div>
 
           {/* Right Panel - Petri Dish */}
-          <div style={{ textAlign: 'center' }}>
+          <div className="petri-container">
             <h3>Petri Dish</h3>
             <canvas
               ref={canvasRef}
               width={400}
               height={400}
               onClick={handleCanvasClick}
-              style={{
-                border: '2px solid #333',
-                borderRadius: '8px',
-                cursor: role === 'placer' ? 'crosshair' : 'default',
-                background: 'white'
-              }}
+              className={`petri-canvas ${role}`}
             />
-            <div style={{ marginTop: '10px', fontSize: '12px', color: '#666' }}>
+            <div className="petri-info">
               {role === 'placer' ? 'Click on the petri dish to place mold' : 'Adjust sliders to change mold properties'}
             </div>
-            <div style={{ marginTop: '5px', fontSize: '12px', color: '#666' }}>
+            <div className="mold-count">
               Total molds: {molds.length}
             </div>
           </div>

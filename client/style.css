@@ -1,0 +1,188 @@
+/* Main Container */
+.app-container {
+  font-family: sans-serif;
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.app-title {
+  text-align: center;
+}
+
+/* Connection Info */
+.connection-info {
+  margin-bottom: 20px;
+  padding: 10px;
+  background: #f5f5f5;
+  border-radius: 8px;
+}
+
+/* Role Selection */
+.role-selection {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.role-button {
+  padding: 15px 30px;
+  margin: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  border: none;
+  border-radius: 8px;
+  color: white;
+}
+
+.role-button.controller {
+  background: #4ade80;
+}
+
+.role-button.placer {
+  background: #60a5fa;
+}
+
+/* Main Grid Layout */
+.main-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+/* Control Panels */
+.control-panel {
+  background: #f9fafb;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.control-section {
+  margin-bottom: 20px;
+}
+
+.control-label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.range-input {
+  width: 100%;
+}
+
+.control-info {
+  font-size: 12px;
+  color: #666;
+}
+
+/* Preview Box */
+.preview-box {
+  padding: 15px;
+  background: #e0f2fe;
+  border-radius: 6px;
+  margin-top: 20px;
+}
+
+.preview-size {
+  font-size: 24px;
+  margin-top: 10px;
+}
+
+/* Mold Selection */
+.mold-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.mold-button {
+  padding: 15px;
+  font-size: 14px;
+  cursor: pointer;
+  background: white;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.mold-button.selected {
+  color: white;
+  font-weight: bold;
+}
+
+.mold-icon {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+
+/* Settings Info */
+.settings-info {
+  margin-top: 20px;
+  padding: 15px;
+  background: #fef3c7;
+  border-radius: 6px;
+}
+
+.settings-text {
+  font-size: 12px;
+  margin-top: 5px;
+}
+
+/* Clear Button */
+.clear-button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  width: 100%;
+  font-size: 14px;
+  cursor: pointer;
+  background: #ef4444;
+  border: none;
+  border-radius: 8px;
+  color: white;
+}
+
+/* Change Role Button */
+.change-role-button {
+  margin-top: 10px;
+  padding: 8px 16px;
+  font-size: 12px;
+  cursor: pointer;
+  background: #64748b;
+  border: none;
+  border-radius: 6px;
+  color: white;
+  width: 100%;
+}
+
+/* Petri Dish Container */
+.petri-container {
+  text-align: center;
+}
+
+.petri-canvas {
+  border: 2px solid #333;
+  border-radius: 8px;
+  background: white;
+}
+
+.petri-canvas.placer {
+  cursor: crosshair;
+}
+
+.petri-canvas.controller {
+  cursor: default;
+}
+
+.petri-info {
+  margin-top: 10px;
+  font-size: 12px;
+  color: #666;
+}
+
+.mold-count {
+  margin-top: 5px;
+  font-size: 12px;
+  color: #666;
+}
