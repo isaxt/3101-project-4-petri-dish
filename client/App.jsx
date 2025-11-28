@@ -74,7 +74,7 @@ export function App() {
     };
   }, []);
 
-  // Draw molds on canvas
+  // place/draw molds on canvas
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -82,7 +82,7 @@ export function App() {
     const ctx = canvas.getContext('2d');
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    // Draw petri dish image as background
+    // draws petri dish image as background
     const petriImg = petriDishImageRef.current;
     if (petriImg && petriImg.complete) {
       ctx.drawImage(petriImg, 0, 0, canvas.width, canvas.height);
@@ -309,7 +309,7 @@ export function App() {
                 <div className="settings-info">
                   <strong>current settings:</strong>
                   <div className="settings-text">
-                    nnvironment: {environment}% | time: {time}% | temp: {temperature}%
+                    environment: {environment}% | time: {time}% | temp: {temperature}%
                   </div>
                   <div className="settings-text">
                     mold size will be: {((10 + (environment / 100) * 30) * (1 + (time / 100) * 2) * (0.5 + (temperature / 100))).toFixed(1)}px
