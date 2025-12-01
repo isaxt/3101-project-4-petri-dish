@@ -1,6 +1,8 @@
 import { useState, useEffect, useRef } from "react";
 import './style.css';
 
+
+// mold assets!
 const MOLD_TYPES = [
   { name: 'abstract mold', image: '/assets/abstract_mold.png' },
   { name: 'double mold', image: '/assets/double_mold.png' },
@@ -86,17 +88,18 @@ export function App() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
     // draws petri dish image as background
+    // 
     const petriImg = petriDishImageRef.current;
     if (petriImg && petriImg.complete) {
       ctx.drawImage(petriImg, 0, 0, canvas.width, canvas.height);
     }
 
-    // Draw molds using images
+    // places the mold images
     molds.forEach(mold => {
       const moldImg = moldImagesRef.current[mold.type];
       if (moldImg && moldImg.complete) {
         ctx.globalAlpha = 0.8;
-        // Draw image centered on the click position
+        // draw image centered on the click position
         const imgSize = mold.size * 2; // diameter
         ctx.drawImage(
           moldImg,
@@ -121,6 +124,8 @@ export function App() {
     }
   };
 
+
+  // the respective "change" toggles
   const handleEnvironmentChange = (e) => {
     const value = parseInt(e.target.value);
     setEnvironment(value);
@@ -352,3 +357,8 @@ export function App() {
     </div>
   );
 }
+
+//comments from code walk-through
+//rotating the iamge for each placement-- get more variation 
+//slight variation in color or brightness
+// having a bit more difference from mold to mold-- read as more complex composition
