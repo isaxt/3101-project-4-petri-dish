@@ -43,7 +43,10 @@ export function App() {
   }, []);
 
   useEffect(() => {
-    let socket = new WebSocket("ws://localhost:3000/");
+    // "ws://${window.location.hostname}:3000/"
+    // this calls the LITERAL ip address instead of localhost
+    // instead of hard coding it
+    let socket = new WebSocket(`ws://${window.location.hostname}:3000/`);
 
     function handler({ data }) {
       let event = JSON.parse(data);
